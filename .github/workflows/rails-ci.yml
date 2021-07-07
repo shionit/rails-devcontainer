@@ -1,0 +1,62 @@
+name: Rails CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6.3
+        bundler-cache: true
+
+    - name: Set up Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.21.0
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        yarn install
+    - name: Build App
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+      run: |
+        bin/rails db:setup
+    - name: Run Tests
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+      run: |
+        bin/rails test

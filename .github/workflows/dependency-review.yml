@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
 
       - name: Dependency Review
-        uses: actions/dependency-review-action@9129f7f3c2f8da31ccee05c3bcedb1f1ab7f9fd6  # v4.6.0
+        uses: actions/dependency-review-action@ce3cf9537a52e8119d91fd484ab5b8a807627bf8  # v4.6.0
         with:
           # Block PRs that introduce packages with critical or high CVEs
           fail-on-severity: high

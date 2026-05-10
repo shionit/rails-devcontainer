@@ -23,7 +23,7 @@ jobs:
       postgres:
         # Pin to a specific digest so the image cannot be silently replaced.
         # Renovate will keep this digest current.
-        image: postgres:16@sha256:ec96ede85a41e24eab45be6e20f7ac1b6a32e39d84cf7e90ab016e52a7deac9c
+        image: postgres:16@sha256:3102b2114b39383b61fa194e5929734c72a56ce366dbb391509b1f07aef10f9f
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres

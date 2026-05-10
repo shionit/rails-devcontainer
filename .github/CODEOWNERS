@@ -1,0 +1,20 @@
+# CODEOWNERS — requires at least one approval from the listed owner(s)
+# before any PR touching these paths can be merged.
+#
+# Security-sensitive paths are listed explicitly so that changes to CI
+# pipelines and security configuration always get a deliberate review.
+
+# Repository-wide default owner
+*                           @shionit
+
+# GitHub Actions workflows — any change to CI/CD requires owner review
+.github/workflows/          @shionit
+
+# Renovate config — controls automated dependency update behaviour
+.github/renovate.json       @shionit
+
+# DevContainer definition — changes affect the development environment
+.devcontainer/              @shionit
+
+# Security policy
+SECURITY.md                 @shionit

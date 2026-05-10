@@ -61,6 +61,7 @@ jobs:
 
     - name: Install system dependencies
       run: |
+        sudo apt-get update -yqq
         sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
 
     - name: Install Ruby gems
